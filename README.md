@@ -13,7 +13,7 @@ Some filtering options for the favorits Image items.
 First database must be created:
 
 Type it in the terminal in your opened mysql root
-CREATE DATABASE company;
+* CREATE DATABASE company;
 
 Create the tables in the company database:
 
