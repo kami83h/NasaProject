@@ -57,30 +57,28 @@ Commit;
 ## The database is now created. Now the application should be installed on computer.
 Follow the instructions below:
 
-Open the link below:
+* Open the link below:
 https://github.com/kami83h/NasaProject
 
-Click on the clone or download
-Download ZIP
-Go to your Eclipse and click on file and after open projects from file system
-Click "Directory" and navigate to the file that you have downloaded from the github
-Click on the finish
-Right click on project and click on "Run As" and click on "Spring Boot App"
-Open browser and access http://localhost:8080/
-
-When the page opens, create new admin with a new username and new password
-Sign in with creative user name and password
-You can choose images on two different options
+* Click on the clone or download
+* Download ZIP
+* Go to your Eclipse and click on file and after open projects from file system
+* Click "Directory" and navigate to the file that you have downloaded from the github
+* Click on the finish
+* Right click on project and click on "Run As" and click on "Spring Boot App"
+* Open browser and access http://localhost:8080/
+* When the page opens, create new admin with a new username and new password
+* Sign in with creative user name and password
+* You can choose images on two different options
 1. Camera List
 2. Page List
-
-After selecting, a link shows that was linked to Nasa Open Image.
-Click on the link for view and full size image
-Click Add, located right of the link's image
-Now the image added to favorite users
-Click on favorites along the top of the menu
-It shows all pictures in favorite if there are any images that users have added before
-Click on sign out to log out and possibly create a new user.
+* After selecting, a link shows that was linked to Nasa Open Image.
+* Click on the link for view and full size image
+* Click Add, located right of the link's image
+* Now the image added to favorite users
+* Click on favorites along the top of the menu
+* It shows all pictures in favorite if there are any images that users have added before
+* Click on sign out to log out and possibly create a new user.
 
 Thank you!
 
