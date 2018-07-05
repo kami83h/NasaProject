@@ -46,13 +46,15 @@
 	<hr></hr>
 	<br></br>
 	
-	<div th:if="${session.isSignedIn}">
+	<div th:if="${session.isSignedIn}" id="paddingDiv">
 	<span>Welcome </span><span th:text="${session.userName}"></span><span>!</span>
 	</div>
 	
+	<div id="paddingDiv">
 	<p th:style="${'color: red'}"
 				th:text="${#httpServletRequest.getParameter('error')}"
 				th:unless="${#httpServletRequest.getParameter('error') == null}"></p>
+	</div>
 	
 	<!-- Sign in -->
 	<div id="center">
@@ -67,7 +69,7 @@
 		</form>
 
 
-		<form th:if="${session.isSignedIn}" th:action="@{/favoritUser}">
+		<form th:if="${session.isSignedIn}" th:action="@{/favoritUser}" id="paddingDiv">
 			<!--  <input type="submit" value="Favorit"></input>-->
 
 			<!-- Favorit tables -->
@@ -90,7 +92,7 @@
 	</div>
 	<br />
 
-	<div th:if="${session.isSignedIn}">
+	<div th:if="${session.isSignedIn}" id="paddingDiv">
 
 		<!-- PictureChoose -->
 		<h6>Select the image by camera</h6>
@@ -140,7 +142,7 @@
 	</div>
 
 	<!-- Add user -->
-	<div id="addUser">
+	<div id="paddingDiv">
 		<form action="#" th:action="@{/user/add}"
 			th:unless="${session.isSignedIn}" th:object="${user}" method="POST">
 			<h3>Add new user</h3>
