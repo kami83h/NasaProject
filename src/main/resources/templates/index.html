@@ -35,7 +35,7 @@
 					class="nav nav-pills flex-column flex-md-row justify-content-end">
 					<li class="nav-item"><a class="nav-link" href="index.html"><strong>Hem</strong></a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/favoritUser?">Favorit</a>
+					<li class="nav-item"><a class="nav-link" th:if="${session.isSignedIn}" href="/favoritUser?">Favorit</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						th:if="${session.isSignedIn}" href="/signOut?">Sign out</a></li>
