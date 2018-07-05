@@ -78,6 +78,7 @@ https://github.com/kami83h/NasaProject
 * Now the image added to favorite users
 * Click on favorites along the top of the menu
 * It shows all pictures in favorite if there are any images that users have added before
+* Click on Delete link to remove the image
 * Click on sign out to log out and possibly create a new user.
 
 Thank you!
