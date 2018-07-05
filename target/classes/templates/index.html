@@ -73,7 +73,7 @@
 			<!--  <input type="submit" value="Favorit"></input>-->
 
 			<!-- Favorit tables -->
-			<table border="1">
+			<table border="1" class="table">
 				<THEAD>
 					<TR>
 						<TD width="60">Id</TD>
@@ -121,7 +121,7 @@
 		<br></br>
 
 		<!-- Add image -->
-		<table border="1">
+		<table border="1" class="table">
 			<tr th:each="camera : ${cameras}">
 				<td th:text="${camera.id}">Id</td>
 				<td><a th:text="${camera.image}" th:href="${camera.image}">Camera</a>
@@ -131,7 +131,7 @@
 		</table>
 
 		<!-- Add pages -->
-		<table border="1">
+		<table border="1" class="table">
 			<tr th:each="camera : ${pages}">
 				<td th:text="${camera.id}">Id</td>
 				<td><a th:text="${camera.image}" th:href="${camera.image}">Camera</a>
