@@ -1,0 +1,169 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>User Form</title>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
+
+<link th:href="@{/webjars/bootstrap/3.0.3/css/bootstrap.css}"
+	rel="stylesheet"></link>
+<link th:href="@{/css/starter.css}" rel="stylesheet"></link>
+
+</head>
+<body>
+	<!-- Nav -->
+	<header class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-10" id="header">
+				<ul
+					class="nav nav-pills flex-column flex-md-row justify-content-end">
+					<li class="nav-item"><a class="nav-link" href="index.html"><strong>Hem</strong></a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/favoritUser?">Favorit</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:if="${session.isSignedIn}" href="/signOut?">Sign out</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<hr></hr>
+	<br></br>
+	
+	<div th:if="${session.isSignedIn}">
+	<span>Welcome </span><span th:text="${session.userName}"></span><span>!</span>
+	</div>
+	
+	<!-- Sign in -->
+	<div id="center">
+		<form th:action="@{/admin}" th:unless="${session.isSignedIn}"
+			th:object="${user}" method="POST">
+			<h1>Admin Loggin</h1>
+			<label>Username: </label><input name="username"
+				th:field="*{username}" required="required"></input> <br /> <label>Password:</label><input
+				type="password" name="password" th:field="*{password}"
+				required="required"></input> <input type="submit" value="Sign In"></input>
+			<br />
+
+			<p th:style="${'color: red'}"
+				th:text="${#httpServletRequest.getParameter('error')}"
+				th:unless="${#httpServletRequest.getParameter('error') == null}"></p>
+		</form>
+
+
+		<form th:if="${session.isSignedIn}" th:action="@{/favoritUser}">
+			<!--  <input type="submit" value="Favorit"></input>-->
+
+			<!-- Favorit tables -->
+			<table border="1">
+				<THEAD>
+					<TR>
+						<TD width="60">Id</TD>
+						<TD width="60">Image</TD>
+						<TD width="60"></TD>
+					</TR>
+				</THEAD>
+				<tr th:each="camera : ${favorits}">
+					<td th:text="${camera.id}">Id</td>
+					<td><a th:text="${camera.image}" th:href="${camera.image}">Camera</a>
+					</td>
+					<td><a th:href="@{/deleteFavorit/{id}(id = ${camera.id})}">Delete</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br />
+
+	<div th:if="${session.isSignedIn}">
+
+		<!-- PictureChoose -->
+		<h6>Select the image by camera</h6>
+		<table border="1">
+			<THEAD>
+				<TR>
+					<TD>Camera List</TD>
+				</TR>
+			</THEAD>
+			<tr th:each="photo : ${photos}">
+				<td th:text="${photo.camera}">Camera</td>
+				<td><a th:href="@{/pictureChoose/{id}(id = ${photo.id})}">Filter</a></td>
+			</tr>
+		</table>
+<hr></hr>
+	<!-- PageChoose -->
+		<div id="pageChoose">
+			<h6>Select the image by page</h6>
+			<span><a th:href="@{/pageChoose/{id}(id = 1)}">1</a></span> <span><a
+				th:href="@{/pageChoose/{id}(id = 2)}">2</a></span> <span><a
+				th:href="@{/pageChoose/{id}(id = 3)}">3</a></span> <span><a
+				th:href="@{/pageChoose/{id}(id = 4)}">4</a></span> <span><a
+				th:href="@{/pageChoose/{id}(id = 5)}">5</a></span>
+		</div>
+
+		<br></br>
+
+		<!-- Add image -->
+		<table border="1">
+			<tr th:each="camera : ${cameras}">
+				<td th:text="${camera.id}">Id</td>
+				<td><a th:text="${camera.image}" th:href="${camera.image}">Camera</a>
+				</td>
+				<td><a th:href="@{/add/{id}(id = ${camera.id})}">Add</a></td>
+			</tr>
+		</table>
+
+		<!-- Add pages -->
+		<table border="1">
+			<tr th:each="camera : ${pages}">
+				<td th:text="${camera.id}">Id</td>
+				<td><a th:text="${camera.image}" th:href="${camera.image}">Camera</a>
+				</td>
+				<td><a th:href="@{/add/{id}(id = ${camera.id})}">Add</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<!-- Add user -->
+	<div id="addUser">
+		<form action="#" th:action="@{/user/add}"
+			th:unless="${session.isSignedIn}" th:object="${user}" method="POST">
+			<h3>Add new user</h3>
+			<label>Username: </label><input name="username"
+				th:value="${user?.username}" required="required"></input> <br /> <label>Password:
+			</label><input name="password" th:value="${user?.password}"
+				th:field="*{password}" required="required"></input> <br /> <input
+				type="submit" value="Add employee"></input>
+		</form>
+	</div>
+
+	<!-- footer -->
+	<footer>
+		<div class="card-footer " id="footer">
+			<div class="row">
+				<div class="col-sm-5">Designed by Kami Hassanzadeh</div>
+				<div class="col-sm-2">
+					<p></p>
+				</div>
+				<div class="col-sm-5">Email: kami83h@gmail.com</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>

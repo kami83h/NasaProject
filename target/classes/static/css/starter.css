@@ -1,0 +1,33 @@
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+#textMainPic{
+	font-size: 1.4em;
+}
+
+#footer{
+	background-color: black;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	
+}
+#pageChoose{
+	border: 1px;
+}
+
+
+#header{
+	margin-top: 20px;
+}
+#addUser{
+	padding:12px;
+}
+#center{
+	text-align: center;
+}
