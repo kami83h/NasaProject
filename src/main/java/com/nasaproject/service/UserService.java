@@ -24,16 +24,6 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User findById(int id) {
-//		for(User user: userList) {
-//			if(user.getId() == id) {
-//				return user;
-//			}
-//		}
-		return null;
-	}
-
-	@Override
 	public User findByUsername(User user) {
 		
 		User entity = new User();

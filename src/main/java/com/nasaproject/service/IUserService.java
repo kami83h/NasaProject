@@ -10,8 +10,6 @@ import com.nasaproject.bean.User;
 @Service
 public interface IUserService {
 
-	User findById(int id);
-    
     User findByUsername(User user);
      
     void addUser(User user);

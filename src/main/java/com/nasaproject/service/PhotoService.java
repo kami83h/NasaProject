@@ -75,16 +75,6 @@ public class PhotoService implements IPhotoService {
 		return photoList;
 
 	}
-	public PreparedStatement setPreparedStatement(String input) {
-		try {
-			pstmt = databaseConnection.getConnection()
-					.prepareStatement(input);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return pstmt;	
-	}
-
 
 	@Override
 	public String getPhotoById(int id) {
@@ -101,8 +91,7 @@ public class PhotoService implements IPhotoService {
 		}	
 		return result;
 	}
-
-
+	
 	@Override
 	public void addPhotoToFavorit(int userId, Camera camera) {
 
@@ -119,44 +108,13 @@ public class PhotoService implements IPhotoService {
 			e.printStackTrace();
 		}
 	}
-	//	@Override
-	//	public List<Photo> findById(List<Photo> photoListInput, int id) {
-	//		List<Photo> photoList = new ArrayList<Photo>();
-	//		try {
-	//			setPreparedStatement("SELECT p.photo_id, p.camera FROM users u "
-	//					+ "JOIN favorit f ON u.user_id = f.user_id "
-	//					+ "JOIN photo p ON p.photo_id=f.photo_id where u.user_id="+ id +";");
-	//			ResultSet rs = pstmt.executeQuery();
-	//
-	//			while (rs.next()) {
-	//				Photo photo = new Photo();
-	//				photo.setId(rs.getInt("photo_id"));
-	//				photo.setCamera(rs.getString("camera"));
-	//				photoList.add(photo);
-	//			}
-	//		} catch (SQLException e) {
-	//			e.printStackTrace();
-	//		}	
-	//		return photoList;
-	//		 List<Photo> favoritList = new ArrayList<Photo>();
-	//		for(Photo photo: photoList) {
-	//			if(photo.getId()== id) {
-	//				if(favoritList.isEmpty()) {
-	//					favoritList.add(photo);
-	//				}
-	//				else if(!isInFavorit(favoritList,photo.getId())){
-	//					favoritList.add(photo);
-	//				}
-	//			}
-	//		}
-	//		return favoritList;
-	//	}
-	//	public boolean isInFavorit(List<Photo> favoritList,int id) {
-	//		for(Photo list : favoritList) {
-	//			if(list.getId()==id) {
-	//				return true;
-	//			}
-	//		}
-	//		return false;
-	//	}
+	public PreparedStatement setPreparedStatement(String input) {
+		try {
+			pstmt = databaseConnection.getConnection()
+					.prepareStatement(input);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pstmt;	
+	}
 }

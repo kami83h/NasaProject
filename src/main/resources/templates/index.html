@@ -50,6 +50,10 @@
 	<span>Welcome </span><span th:text="${session.userName}"></span><span>!</span>
 	</div>
 	
+	<p th:style="${'color: red'}"
+				th:text="${#httpServletRequest.getParameter('error')}"
+				th:unless="${#httpServletRequest.getParameter('error') == null}"></p>
+	
 	<!-- Sign in -->
 	<div id="center">
 		<form th:action="@{/admin}" th:unless="${session.isSignedIn}"
@@ -60,10 +64,6 @@
 				type="password" name="password" th:field="*{password}"
 				required="required"></input> <input type="submit" value="Sign In"></input>
 			<br />
-
-			<p th:style="${'color: red'}"
-				th:text="${#httpServletRequest.getParameter('error')}"
-				th:unless="${#httpServletRequest.getParameter('error') == null}"></p>
 		</form>
 
 
@@ -147,7 +147,7 @@
 			<label>Username: </label><input name="username"
 				th:value="${user?.username}" required="required"></input> <br /> <label>Password:
 			</label><input name="password" th:value="${user?.password}"
-				th:field="*{password}" required="required"></input> <br /> <input
+				th:field="*{password}" type="password" required="required"></input> <br /> <input
 				type="submit" value="Add employee"></input>
 		</form>
 	</div>

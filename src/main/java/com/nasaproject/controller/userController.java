@@ -9,9 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,7 +36,6 @@ public class userController {
 		userService = new UserService();
 		photoService = new PhotoService();
 		photoRepository = new PhotoRepository();
-
 	}
 
 	@RequestMapping(value = {"/", "index"})
@@ -48,31 +45,13 @@ public class userController {
 		model.addAttribute("photos", photoService.findAllPhoto());
 		return "index";
 	}
-
-
-	@PostMapping(value= "/user/add")
-	public ModelAndView addEmployee(@ModelAttribute User user, Model model) {
-
-		model.addAttribute("user", new User());
-		List<User> userList =  userService.findAllUsers();
-
-		for(User userlist : userList) {
-			if(userlist.getUsername().equals(user.getUsername())) {
-				return new ModelAndView("forward:/index?error=User%20already%20exists !");
-			}
-		}
-		userService.addUser(user);
-
-		return new ModelAndView("redirect:/index");
-	}
 	
 	@GetMapping("/pageChoose/{id}")
 	public ModelAndView pageChoose(@PathVariable("id") int id, Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession(true);
-//		String result = photoService.getPhotoById(id);
 		Camera camera = photoRepository.getImageIdByPage(Integer.toString(id));
-		System.out.println(camera.getId() + " " + camera.getImage());
+		
 		session.setAttribute("cameraResult", camera);
 		
 		List<Camera> cameraList = new ArrayList<Camera>();
